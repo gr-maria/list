@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <string>
 using namespace std;
 
 ostream& operator<<(ostream& o, string& s)
@@ -27,11 +27,11 @@ protected:
 public :
 	//virtual void sort(bool (*f) (T* first, T* second)) = 0;
 	virtual T get(int index) = 0;
-	//virtual void set(int index, T data) = 0;
+	virtual void set(int index, T data) = 0;
 	virtual void insert(int index, T data) = 0;
-	//virtual T remove(int index) = 0;
+	virtual T remove(int index) = 0;
 	virtual int len() = 0;
-	/*void push(T data)
+	void push(T data)
 	{
 		insert(0, data);
 	}
@@ -46,7 +46,7 @@ public :
 	virtual bool empty()
 	{
 		return len() == 0;
-	}*/
+	}
 
 	virtual ostream& print(ostream& o)
 	{
@@ -72,27 +72,31 @@ public :
 
 };
 
-class list : public AbstractList<string>
+///////////////////////////////////////////////////////////////////////////////////////////
+template<typename T>
+class list : public AbstractList<T>
 {
-	string data;
+	T data;
 	list* next;
-
-protected:
-	string _default;
 
 public:
 	list()
 	{
-		data = "Hello!";
+		//data = NULL;
 		next = NULL;
-		_default = "Empty:(";
 	}
 
-	list (string sent)
+	list (T sent, T d)
+	{
+		_default = d;
+		data = sent;
+		next = NULL;
+	}
+
+	list (T sent)
 	{
 		data = sent;
 		next = NULL;
-		_default = "Empty:(";
 	}
 
 	list (const list& a)
@@ -113,9 +117,11 @@ public:
 		return (list(*tmp)).data;
 	}
 
-	void insert(int index, string data)
+	void set(int index, T data)
 	{
-		if (index != 0){
+		if(index < len())
+		{
+			cout << "here1" << endl;
 			int i = 0;
 			while (i != index && next != NULL)
 			{
@@ -123,15 +129,43 @@ public:
 				next = next->next;
 				i++;
 			}
-			list* pn = new list(next->data);
 			this->data = data;
-			next = pn; pn->next = next->next;
+		}
+	}
+
+	void insert(int index, T data)/////////////////////////
+	{
+		int i = 0;
+		while (i != index && next != NULL)
+		{
+			next = next->next;
+			i++;
+		}
+		list* pn = new list(data);
+		pn->next = next->next;
+		next = pn; 
+	}
+
+	T remove(int index)
+	{
+		if(index < len())
+		{
+			int i = 0;
+			list* prev = this;
+			while (i != index && next != NULL)
+			{
+				next = next->next;
+				i++;
+			}
+			list* tmp = this;
+			next = next->next->next;
+			return this->data;
 		}
 	}
 
 	int len()
 	{
-		int i = 0;
+		int i = 1;
 		while (next != NULL)
 		{
 			next = next->next;
@@ -153,17 +187,19 @@ public:
 
 AbstractList<string>* get_init()
 {
-	string d("Hello world!");
-	list* s = new list(d);
+	string str = "Hello!";
+	string def = "Error";
+	list<string>* s = new list<string>(str, def);
 	return s;
 }
 
 
 int main()
 {
-	list a1 = list();
-	//al->read(cin);
-	a1.insert(1, "bye");
+	list<string> a1 = list<string>();
+	//a1.read(cin);
+	a1.insert(0, "bye");
+	//a1.set(0, "bye!");
 	a1.print(cout);
 	system("pause");
 	return 0;

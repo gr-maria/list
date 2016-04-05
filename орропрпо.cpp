@@ -25,7 +25,7 @@ class AbstractList
 protected:
 	T _default;
 public :
-	//virtual void sort(bool (*f) (T* first, T* second)) = 0;
+	virtual void sort(bool (*f) (T* first, T* second)) = 0;
 	virtual T get(int index) = 0;
 	virtual void set(int index, T data) = 0;
 	virtual void insert(int index, T data) = 0;
@@ -80,6 +80,7 @@ class list : public AbstractList<T>
 	list* next;
 
 public:
+
 	list()
 	{
 		//data = NULL;
@@ -103,6 +104,11 @@ public:
 	{
 		data = a.data;
 		next = a.next;
+	}
+
+	~list()
+	{
+		delete this;
 	}
 
 	string get(int index)
@@ -182,6 +188,10 @@ public:
 		}
 		return o;
 	}
+
+	void sort(bool (*f) (T* first, T* second))
+	{
+	}
 };
 
 
@@ -194,13 +204,3 @@ AbstractList<string>* get_init()
 }
 
 
-int main()
-{
-	list<string> a1 = list<string>();
-	//a1.read(cin);
-	a1.insert(0, "bye");
-	//a1.set(0, "bye!");
-	a1.print(cout);
-	system("pause");
-	return 0;
-}

@@ -3,8 +3,4 @@ maria/listprog.cpp: In constructor 'list<T>::list(T, T)':
 maria/listprog.cpp:92:3: error: '_default' was not declared in this scope
    _default = d;
    ^
-cur.cpp: In member function 'virtual void ListTest_PushPop_Test::TestBody()':
-cur.cpp:79:8: error: 'res' was not declared in this scope
-   if (!res) return;
-        ^
 ./check.sh: line 24: ./a.out: No such file or directory

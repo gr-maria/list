@@ -110,6 +110,8 @@ public:
 		next = a.next;
 	}
 
+	list
+
 	~list()
 	{
 		delete this;
@@ -144,6 +146,12 @@ public:
 		}
 	}
 
+	void insert ()
+	{
+
+	}
+
+	/*
 	void insert(int index, T data)
 	{
 		if(index == 0)
@@ -175,7 +183,7 @@ public:
 				next = pn; pn->next = NULL;
 			}
 		}
-	}
+	}*/
 
 	T remove(int index)
 	{
@@ -219,7 +227,7 @@ AbstractList<string>* get_init()
 	return s;
 }
 
-
+/*
 int main ()
 {
 	AbstractList<string>* a = get_init();
@@ -232,3 +240,4 @@ int main ()
 	system ("pause");
 	return 0;
 }
+*/

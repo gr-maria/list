@@ -218,17 +218,3 @@ AbstractList<string>* get_init()
 	list<string>* s = new list<string>(str, def);
 	return s;
 }
-
-
-int main ()
-{
-	AbstractList<string>* a = get_init();
-	a->insert(0, "Bye");
-	//cout << a->len() << endl;
-	//a->insert(1, "Good morning");
-	
-    //a->print(cout);
-	//cout << a->get(0) << endl << a->get(1) << endl << a->get(2) << endl << a->get(3) << endl;
-	system ("pause");
-	return 0;
-}

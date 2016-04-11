@@ -50,7 +50,7 @@ public :
 
 	virtual ostream& print(ostream& o)
 	{
-		for (int i = 0; i < len(); i ++)
+		for (int i = 0; i < len(); i++)
 		{
 			o << get(i) << endl;
 		}
@@ -79,6 +79,9 @@ class list : public AbstractList<T>
 	T data;
 	list* next;
 
+protected:
+	T _default;
+
 public:
 
 	list()
@@ -94,15 +97,16 @@ public:
 		next = NULL;
 	}
 
-	list (T sent)
+	list (T d)
 	{
-		data = sent;
+		_default = d;
 		next = NULL;
 	}
 
 	list (const list& a)
 	{
 		data = a.data;
+		_default = a._default;
 		next = a.next;
 	}
 
@@ -111,16 +115,17 @@ public:
 		delete this;
 	}
 
-	string get(int index)
+	T get(int index)
 	{
 		int i = 0;
-		list* tmp = new list (*this);
+		list* tmp = this;
 		while (i != index && tmp->next != NULL)
 		{
+			cout <<"in get" << endl;
 			tmp = tmp->next;
 			i++;
 		}
-		return (list(*tmp)).data;
+		return tmp->data;
 	}
 
 	void set(int index, T data)
@@ -139,17 +144,37 @@ public:
 		}
 	}
 
-	void insert(int index, T data)/////////////////////////
+	void insert(int index, T data)
 	{
-		int i = 0;
-		while (i != index && next != NULL)
+		if(index == 0)
 		{
-			next = next->next;
-			i++;
+			list* tmp = this;
+			list* pn = new list(data, tmp->_default);
+			pn = this;
+		}else{
+			if (index < len())
+			{
+				cout << "here2" << endl;
+				int i = 0;
+				list* eqv = this;
+				while (i != index)
+				{
+					eqv = eqv->next;
+					i++;
+				}
+				list* pn = new list(data, eqv->_default);
+				eqv->next = pn;
+				pn->next = eqv->next->next;
+			} else {
+				while(next != NULL)
+				{
+					cout << "here3" << endl;
+					next = next->next;
+				}
+				list* pn = new list(data, _default);
+				next = pn; pn->next = NULL;
+			}
 		}
-		list* pn = new list(data);
-		pn->next = next->next;
-		next = pn; 
 	}
 
 	T remove(int index)
@@ -180,15 +205,6 @@ public:
 		return i;
 	}
 
-	ostream& print(ostream& o)
-	{
-		for (int i = 0; i < len(); i ++)
-		{
-			o << get(i) << endl;
-		}
-		return o;
-	}
-
 	void sort(bool (*f) (T* first, T* second))
 	{
 	}
@@ -204,3 +220,15 @@ AbstractList<string>* get_init()
 }
 
 
+int main ()
+{
+	AbstractList<string>* a = get_init();
+	a->insert(0, "Bye");
+	//cout << a->len() << endl;
+	//a->insert(1, "Good morning");
+	
+    //a->print(cout);
+	//cout << a->get(0) << endl << a->get(1) << endl << a->get(2) << endl << a->get(3) << endl;
+	system ("pause");
+	return 0;
+}

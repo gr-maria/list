@@ -1,6 +1,10 @@
-In file included from cur.cpp:13:0:
-maria/listprog.cpp: In constructor 'list<T>::list(T, T)':
-maria/listprog.cpp:92:3: error: '_default' was not declared in this scope
-   _default = d;
-   ^
-./check.sh: line 24: ./a.out: No such file or directory
+[==========] Running 7 tests from 1 test case.
+[----------] Global test environment set-up.
+[----------] 7 tests from ListTest
+[ RUN      ] ListTest.ListLen
+cur.cpp:20: Failure
+Value of: l->len()
+  Actual: 1
+Expected: 0
+[  FAILED  ] ListTest.ListLen
+[ RUN      ] ListTest.DeleteOne

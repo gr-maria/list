@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 using namespace std;
 
 ostream& operator<<(ostream& o, string& s)
@@ -31,6 +30,7 @@ public :
 	virtual void insert(int index, T data) = 0;
 	virtual T remove(int index) = 0;
 	virtual int len() = 0;
+
 	void push(T data)
 	{
 		insert(0, data);
@@ -72,149 +72,116 @@ public :
 
 };
 
-///////////////////////////////////////////////////////////////////////////////////////////
 template<typename T>
-class list : public AbstractList<T>
+class List : public AbstractList<T>
 {
-	T data;
-	list* next;
-
-protected:
+	T inf;
+	List* next;
 	T _default;
-
 public:
 
-	list()
+	List(T data, T def)
 	{
-		//data = NULL;
+		inf = data;
+		_default = def;
 		next = NULL;
 	}
 
-	list (T sent, T d)
+	~List()
 	{
-		_default = d;
-		data = sent;
 		next = NULL;
-	}
-
-	list (T d)
-	{
-		_default = d;
-		next = NULL;
-	}
-
-	list (const list& a)
-	{
-		data = a.data;
-		_default = a._default;
-		next = a.next;
-	}
-
-	~list()
-	{
-		delete this;
-	}
-
-	T get(int index)
-	{
-		int i = 0;
-		list* tmp = this;
-		while (i != index && tmp->next != NULL)
-		{
-			cout <<"in get" << endl;
-			tmp = tmp->next;
-			i++;
-		}
-		return tmp->data;
-	}
-
-	void set(int index, T data)
-	{
-		if(index < len())
-		{
-			cout << "here1" << endl;
-			int i = 0;
-			while (i != index && next != NULL)
-			{
-				cout << "here3" << endl;
-				next = next->next;
-				i++;
-			}
-			this->data = data;
-		}
-	}
-
-	void insert(int index, T data)
-	{
-		if(index == 0)
-		{
-			list* tmp = this;
-			list* pn = new list(data, tmp->_default);
-			pn = this;
-		}else{
-			if (index < len())
-			{
-				cout << "here2" << endl;
-				int i = 0;
-				list* eqv = this;
-				while (i != index)
-				{
-					eqv = eqv->next;
-					i++;
-				}
-				list* pn = new list(data, eqv->_default);
-				eqv->next = pn;
-				pn->next = eqv->next->next;
-			} else {
-				while(next != NULL)
-				{
-					cout << "here3" << endl;
-					next = next->next;
-				}
-				list* pn = new list(data, _default);
-				next = pn; pn->next = NULL;
-			}
-		}
-	}
-
-	T remove(int index)
-	{
-		if(index < len())
-		{
-			int i = 0;
-			list* prev = this;
-			while (i != index && next != NULL)
-			{
-				next = next->next;
-				i++;
-			}
-			list* tmp = this;
-			next = next->next->next;
-			return this->data;
-		}
 	}
 
 	int len()
 	{
-		int i = 1;
-		while (next != NULL)
+		int i = 0;
+		List* l = this;
+		while (l != NULL)
 		{
-			next = next->next;
+			l = l->next;
 			i++;
 		}
 		return i;
 	}
 
+	void set(int index, T data)
+	{
+		List* tmp = this;
+		int i = 0;
+		while(i != index || tmp->next != NULL)
+		{
+			tmp = tmp->next;
+			i++;
+		}
+		tmp->inf = data;
+	}
+
+	T get(int index)
+	{
+		List* tmp = this;
+		int i = 0;
+		while (i != index && tmp->next !=NULL)
+		{
+			tmp = tmp->next;
+			i++;
+		}
+		return tmp->inf;
+	}
+
+	void insert(int index, T data)
+	{
+		List* n = new List (data, this->_default);
+		List* tmp1 = this;
+		int i = 0;
+		while (i != index && tmp1->next !=NULL)
+		{
+			tmp1 = tmp1->next;
+			i++;
+		}
+		tmp1->next = n;
+		n->next = tmp1->next->next;
+	}//////hmm... Is it correct?
+
+	T remove (int index)
+	{
+		List* tmp = this;
+		int i = 0;
+		while (i != index && tmp->next !=NULL)
+		{
+			tmp = tmp->next;
+			i++;
+		}
+		List* del = tmp->next;
+		tmp->next = tmp->next->next;
+		return del->inf;
+	}
+
+	bool comp (T* first, T* second)
+	{
+		if (&first < &second) {return true;}
+		else {return false;}
+	}
+
 	void sort(bool (*f) (T* first, T* second))
 	{
+		List* tmp1; List* tmp2;
+		for(tmp1 = this; tmp1->next != NULL; tmp1 = tmp1->next)
+		{
+			for(tmp2 = this; tmp2->next != NULL; tmp2 = tmp2->next)
+			{
+				if(comp(&(tmp2->inf), &(tmp2->next->inf)))
+				{
+					List* tmp = tmp2;
+					tmp2 = tmp2->next;
+					tmp2->next = tmp;
+				}
+			}
+		}
 	}
 };
 
-
 AbstractList<string>* get_init()
 {
-	string str = "Hello!";
-	string def = "Error";
-	list<string>* s = new list<string>(str, def);
-	return s;
+	List<string>* a = new List<string>("Hello", "Error");
+	return a;
 }

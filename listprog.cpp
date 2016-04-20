@@ -95,10 +95,10 @@ public:
 	int len()
 	{
 		int i = 0;
-		List* l = this;
-		while (l != NULL)
+		//List* l = this;
+		while (next != NULL)
 		{
-			l = l->next;
+			next = next->next;
 			i++;
 		}
 		return i;
@@ -192,4 +192,12 @@ AbstractList<string>* get_init()
 {
 	List<string>* a = new List<string>("Hello", "Error");
 	return a;
+}
+
+int main()
+{
+	List<string> a = List<string>("Hello", "Error");
+	cout << a.len() << endl;
+	system("pause");
+	return 0;
 }

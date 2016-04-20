@@ -1,5 +1,5 @@
 cur.cpp: In function 'int main(int, char**)':
-cur.cpp:184:31: error: declaration of C function 'int main(int, char**)' conflicts with
+cur.cpp:187:31: error: declaration of C function 'int main(int, char**)' conflicts with
  int main(int argc, char **argv) {
                                ^
 In file included from cur.cpp:13:0:

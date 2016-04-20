@@ -1,52 +1,9 @@
-[==========] Running 7 tests from 1 test case.
-[----------] Global test environment set-up.
-[----------] 7 tests from ListTest
-[ RUN      ] ListTest.ListLen
-cur.cpp:20: Failure
-Value of: l->len()
-  Actual: 1
-Expected: 0
-[  FAILED  ] ListTest.ListLen
-[ RUN      ] ListTest.DeleteOne
-cur.cpp:28: Failure
-Value of: l->len()
-  Actual: 1
-Expected: 0
-[  FAILED  ] ListTest.DeleteOne
-[ RUN      ] ListTest.AddOne
-cur.cpp:36: Failure
-Value of: l->len()
-  Actual: 2
-Expected: 1
-[  FAILED  ] ListTest.AddOne
-[ RUN      ] ListTest.AddAndCheckOne
-cur.cpp:45: Failure
-Value of: l->get(0).c_str()
-  Actual: "Hello"
-Expected: "fail"
-[  FAILED  ] ListTest.AddAndCheckOne
-[ RUN      ] ListTest.PopOne
-cur.cpp:52: Failure
-Value of: l->len()
-  Actual: 1
-Expected: 0
-cur.cpp:53: Failure
-Value of: l->empty()
-  Actual: false
-Expected: true
-[  FAILED  ] ListTest.PopOne
-[ RUN      ] ListTest.PushPop
-[       OK ] ListTest.PushPop
-[ RUN      ] ListTest.PushPop1E3
-[       OK ] ListTest.PushPop1E3
-[----------] Global test environment tear-down
-[==========] 7 tests from 1 test case ran.
-[  PASSED  ] 2 tests.
-[  FAILED  ] 5 tests, listed below:
-[  FAILED  ] ListTest.ListLen
-[  FAILED  ] ListTest.DeleteOne
-[  FAILED  ] ListTest.AddOne
-[  FAILED  ] ListTest.AddAndCheckOne
-[  FAILED  ] ListTest.PopOne
-
- 5 FAILED TESTS
+cur.cpp: In function 'int main(int, char**)':
+cur.cpp:184:31: error: declaration of C function 'int main(int, char**)' conflicts with
+ int main(int argc, char **argv) {
+                               ^
+In file included from cur.cpp:13:0:
+maria/listprog.cpp:197:5: error: previous declaration 'int main()' here
+ int main()
+     ^
+./check.sh: line 24: ./a.out: No such file or directory

@@ -23,8 +23,8 @@ class AbstractList
 {
 protected:
 	T _default;
-public :
-	virtual void sort(bool (*f) (T* first, T* second)) = 0;
+public:
+	virtual void sort(bool(*f) (T* first, T* second)) = 0;
 	virtual T get(int index) = 0;
 	virtual void set(int index, T data) = 0;
 	virtual void insert(int index, T data) = 0;
@@ -61,7 +61,7 @@ public :
 	{
 		int count;
 		in >> count;
-		for (int i = 0 ; i < count ; i ++)
+		for (int i = 0; i < count; i++)
 		{
 			T tmp;
 			in >> tmp;
@@ -108,7 +108,7 @@ public:
 	{
 		List* tmp = this;
 		int i = 0;
-		while(i != index || tmp->next != NULL)
+		while (i != index || tmp->next != NULL)
 		{
 			tmp = tmp->next;
 			i++;
@@ -120,7 +120,7 @@ public:
 	{
 		List* tmp = this;
 		int i = 0;
-		while (i != index && tmp->next !=NULL)
+		while (i != index && tmp->next != NULL)
 		{
 			tmp = tmp->next;
 			i++;
@@ -130,10 +130,10 @@ public:
 
 	void insert(int index, T data)
 	{
-		List* n = new List (data, this->_default);
+		List* n = new List(data, this->_default);
 		List* tmp1 = this;
 		int i = 0;
-		while (i != index && tmp1->next !=NULL)
+		while (i != index && tmp1->next != NULL)
 		{
 			tmp1 = tmp1->next;
 			i++;
@@ -142,34 +142,42 @@ public:
 		n->next = tmp1->next->next;
 	}//////hmm... Is it correct?
 
-	T remove (int index)
+	T remove(int index)
 	{
 		List* tmp = this;
-		int i = 0;
-		while (i != index && tmp->next !=NULL)
+		if (tmp->next == NULL)
 		{
-			tmp = tmp->next;
-			i++;
+			T d = tmp->inf;
+			tmp = NULL;
+			return d;
 		}
-		List* del = tmp->next;
-		tmp->next = tmp->next->next;
-		return del->inf;
+		else{
+			int i = 0;
+			while (i != index && tmp->next != NULL)
+			{
+				tmp = tmp->next;
+				i++;
+			}
+			List* del = tmp->next;
+			tmp->next = tmp->next->next;
+			return del->inf;
+		}
 	}
 
-	bool comp (T* first, T* second)
+	bool comp(T* first, T* second)
 	{
-		if (&first < &second) {return true;}
-		else {return false;}
+		if (&first < &second) { return true; }
+		else { return false; }
 	}
 
-	void sort(bool (*f) (T* first, T* second))
+	void sort(bool(*f) (T* first, T* second))
 	{
 		List* tmp1; List* tmp2;
-		for(tmp1 = this; tmp1->next != NULL; tmp1 = tmp1->next)
+		for (tmp1 = this; tmp1->next != NULL; tmp1 = tmp1->next)
 		{
-			for(tmp2 = this; tmp2->next != NULL; tmp2 = tmp2->next)
+			for (tmp2 = this; tmp2->next != NULL; tmp2 = tmp2->next)
 			{
-				if(comp(&(tmp2->inf), &(tmp2->next->inf)))
+				if (comp(&(tmp2->inf), &(tmp2->next->inf)))
 				{
 					List* tmp = tmp2;
 					tmp2 = tmp2->next;

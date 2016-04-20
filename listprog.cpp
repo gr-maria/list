@@ -193,11 +193,3 @@ AbstractList<string>* get_init()
 	List<string>* a = new List<string>("Hello", "Error");
 	return a;
 }
-
-int main()
-{
-	List<string> a = List<string>("Hello", "Error");
-	cout << a.len() << endl;
-	system("pause");
-	return 0;
-}

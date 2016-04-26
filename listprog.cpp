@@ -106,6 +106,7 @@ public:
 
 	void set(int index, T data)
 	{
+		if(index < len()){
 		List* tmp = this;
 		int i = 0;
 		while (i != index || tmp->next != NULL)
@@ -113,11 +114,12 @@ public:
 			tmp = tmp->next;
 			i++;
 		}
-		tmp->inf = data;
+		tmp->inf = data;}
 	}
 
 	T get(int index)
 	{
+		if (index > len()){return _default;}else{
 		List* tmp = this;
 		int i = 0;
 		while (i != index && tmp->next != NULL)
@@ -125,22 +127,23 @@ public:
 			tmp = tmp->next;
 			i++;
 		}
-		return tmp->inf;
+		return tmp->inf;}
 	}
 
 	void insert(int index, T data)
 	{
 		List* n = new List(data, this->_default);
 		List* tmp1 = this;
-		int i = 0;
-		while (i != index && tmp1->next != NULL)
-		{
-			tmp1 = tmp1->next;
-			i++;
-		}
-		tmp1->next = n;
-		n->next = tmp1->next->next;
-	}//////hmm... Is it correct?
+
+				int i = 0;
+				while (i != index && tmp1->next != NULL)
+				{
+					tmp1 = tmp1->next;
+					i++;
+				}
+				tmp1->next = n;
+				n->next = tmp1->next->next;
+	}
 
 	T remove(int index)
 	{
@@ -153,13 +156,15 @@ public:
 		}
 		else{
 			int i = 0;
+			List* prev = tmp;
 			while (i != index && tmp->next != NULL)
 			{
+				prev = tmp;
 				tmp = tmp->next;
 				i++;
 			}
-			List* del = tmp->next;
-			tmp->next = tmp->next->next;
+			List* del = tmp;
+			prev->next = tmp->next;
 			return del->inf;
 		}
 	}
@@ -172,7 +177,7 @@ public:
 
 	void sort(bool(*f) (T* first, T* second))
 	{
-		List* tmp1; List* tmp2;
+		List* tmp1; List* tmp2; 
 		for (tmp1 = this; tmp1->next != NULL; tmp1 = tmp1->next)
 		{
 			for (tmp2 = this; tmp2->next != NULL; tmp2 = tmp2->next)
@@ -190,6 +195,18 @@ public:
 
 AbstractList<string>* get_init()
 {
-	List<string>* a = new List<string>("Hello", "Error");
+	List<string>* a = new List<string>("Hello", "fail");
 	return a;
 }
+
+/*
+int main ()
+{
+	List<string> a = List<string>("Hello", "fail");
+	a.insert(0, "Bye");
+	cout<< a.remove(1);
+	cout << a.get(0) << a.get(1);
+	//a.print(cout);
+	system("pause");
+	return 0;
+}*/

@@ -10,7 +10,7 @@
 [ RUN      ] ListTest.AddAndCheckOne
 cur.cpp:46: Failure
 Value of: l->get(0).c_str()
-  Actual: "Hello"
+  Actual: "Error"
 Expected: "fail"
 [  FAILED  ] ListTest.AddAndCheckOne
 [ RUN      ] ListTest.PopOne
@@ -18,13 +18,13 @@ Expected: "fail"
 [ RUN      ] ListTest.PushPop
 cur.cpp:87: Failure
 Value of: l->pop().c_str()
-  Actual: "Hello"
+  Actual: "Error"
 Expected: "fail"
 [  FAILED  ] ListTest.PushPop
 [ RUN      ] ListTest.PushPop1E3
 cur.cpp:121: Failure
 Value of: l->pop().c_str()
-  Actual: "Hello"
+  Actual: "Error"
 Expected: "fail"
 [  FAILED  ] ListTest.PushPop1E3
 [----------] Global test environment tear-down

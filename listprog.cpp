@@ -89,7 +89,6 @@ public:
 
 	List(T def)
 	{
-		inf = def;
 		_default = def;
 		next = NULL;
 	}
@@ -145,15 +144,19 @@ public:
 	{
 		List* n = new List(data, this->_default);
 		List* tmp1 = this;
-
-		int i = 0;
-		while (i != index && tmp1->next != NULL)
-		{
-			tmp1 = tmp1->next;
-			i++;
+		if (index == 0){
+			n->next = this;
 		}
-		tmp1->next = n;
-		n->next = tmp1->next->next;
+		else{
+			int i = 0;
+			while (i != index && tmp1->next != NULL)
+			{
+				tmp1 = tmp1->next;
+				i++;
+			}
+			tmp1->next = n;
+			n->next = tmp1->next->next;
+		}
 	}
 
 	T remove(int index)
@@ -206,7 +209,7 @@ public:
 
 AbstractList<string>* get_init()
 {
-	List<string>* a = new List<string> ("Error");
+	List<string>* a = new List<string>("Error");
 	return a;
 }
 /*

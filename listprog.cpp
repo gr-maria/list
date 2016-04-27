@@ -144,8 +144,8 @@ public:
 	{
 		List* n = new List(data, this->_default);
 		List* tmp1 = this;
-		if (index == 0){
-			n->next = this; return;
+		if (empty()){
+			return;
 		}
 		else{
 			int i = 0;
@@ -209,15 +209,15 @@ public:
 
 AbstractList<string>* get_init()
 {
-	List<string>* a = new List<string>("Err");
+	List<string>* a = new List<string>("Error");
 	return a;
 }
-
+/*
 int main()
 {
 	AbstractList<string>* a = get_init();
 	a->insert(0, "Data");
-	cout << a->get(0);
+	cout << a->get(0) << a->get(1) << a->len();
 	system("pause");
 	return 0;
-}
+}*/

@@ -145,7 +145,7 @@ public:
 		List* n = new List(data, this->_default);
 		List* tmp1 = this;
 		if (index == 0){
-			n->next = this;
+			n->next = this; return;
 		}
 		else{
 			int i = 0;
@@ -209,18 +209,15 @@ public:
 
 AbstractList<string>* get_init()
 {
-	List<string>* a = new List<string>("Error");
+	List<string>* a = new List<string>("Err");
 	return a;
 }
-/*
+
 int main()
 {
-	List<string> a = List<string>("Hello", "fail");
-	a.push("Bye");
-	cout << a.len();
-	cout << a.get(0);
-	cout << a.get(1) << endl;
-
+	AbstractList<string>* a = get_init();
+	a->insert(0, "Data");
+	cout << a->get(0);
 	system("pause");
 	return 0;
-}*/
+}

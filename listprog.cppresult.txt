@@ -1,38 +1,7 @@
-[==========] Running 7 tests from 1 test case.
-[----------] Global test environment set-up.
-[----------] 7 tests from ListTest
-[ RUN      ] ListTest.ListLen
-[       OK ] ListTest.ListLen
-[ RUN      ] ListTest.DeleteOne
-[       OK ] ListTest.DeleteOne
-[ RUN      ] ListTest.AddOne
-[       OK ] ListTest.AddOne
-[ RUN      ] ListTest.AddAndCheckOne
-cur.cpp:46: Failure
-Value of: l->get(0).c_str()
-  Actual: ""
-Expected: "fail"
-[  FAILED  ] ListTest.AddAndCheckOne
-[ RUN      ] ListTest.PopOne
-[       OK ] ListTest.PopOne
-[ RUN      ] ListTest.PushPop
-cur.cpp:87: Failure
-Value of: l->pop().c_str()
-  Actual: ""
-Expected: "fail"
-[  FAILED  ] ListTest.PushPop
-[ RUN      ] ListTest.PushPop1E3
-cur.cpp:121: Failure
-Value of: l->pop().c_str()
-  Actual: ""
-Expected: "fail"
-[  FAILED  ] ListTest.PushPop1E3
-[----------] Global test environment tear-down
-[==========] 7 tests from 1 test case ran.
-[  PASSED  ] 4 tests.
-[  FAILED  ] 3 tests, listed below:
-[  FAILED  ] ListTest.AddAndCheckOne
-[  FAILED  ] ListTest.PushPop
-[  FAILED  ] ListTest.PushPop1E3
-
- 3 FAILED TESTS
+In file included from cur.cpp:13:0:
+maria/listprog.cpp: In member function 'void List<T>::insert(int, T)':
+maria/listprog.cpp:147:13: error: there are no arguments to 'empty' that depend on a template parameter, so a declaration of 'empty' must be available [-fpermissive]
+   if (empty()){
+             ^
+maria/listprog.cpp:147:13: note: (if you use '-fpermissive', G++ will accept your code, but allowing the use of an undeclared name is deprecated)
+./check.sh: line 24: ./a.out: No such file or directory

@@ -201,7 +201,7 @@ AbstractList<string>* get_init()
 	List<string>* a = new List<string>("Hello", "fail");
 	return a;
 }
-
+/*
 int main()
 {
 	List<string> a = List<string>("Hello", "fail");
@@ -211,4 +211,4 @@ int main()
 	//a.print(cout);
 	system("pause");
 	return 0;
-}
+}*/

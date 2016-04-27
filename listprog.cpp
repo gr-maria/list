@@ -87,6 +87,13 @@ public:
 		next = NULL;
 	}
 
+	List(T def)
+	{
+		inf = def;
+		_default = def;
+		next = NULL;
+	}
+
 	~List()
 	{
 		next = NULL;
@@ -95,10 +102,10 @@ public:
 	int len()
 	{
 		int i = 0;
-		//List* l = this;
-		while (next != NULL)
+		List* l = this;
+		while (l->next != NULL)
 		{
-			next = next->next;
+			l = l->next;
 			i++;
 		}
 		return i;
@@ -115,6 +122,7 @@ public:
 				i++;
 			}
 			tmp->inf = data;
+			
 		}
 	}
 
@@ -198,17 +206,18 @@ public:
 
 AbstractList<string>* get_init()
 {
-	List<string>* a = new List<string>("Hello", "fail");
+	List<string>* a = new List<string> ("Error");
 	return a;
 }
 /*
 int main()
 {
 	List<string> a = List<string>("Hello", "fail");
-	a.insert(0, "Bye");
-	cout << a.remove(1);
-	cout << a.get(0) << a.get(1) << a.len();
-	//a.print(cout);
+	a.push("Bye");
+	cout << a.len();
+	cout << a.get(0);
+	cout << a.get(1) << endl;
+
 	system("pause");
 	return 0;
 }*/

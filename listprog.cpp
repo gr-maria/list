@@ -219,7 +219,7 @@ AbstractList<string>* get_init()
 	List<string>* a = new List<string>("Error");
 	return a;
 }
-
+/*
 int main()
 {
 	AbstractList<string>* a = get_init();
@@ -228,3 +228,4 @@ int main()
 	system("pause");
 	return 0;
 }
+*/

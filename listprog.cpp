@@ -93,6 +93,13 @@ public:
 		next = NULL;
 	}
 
+	List (const List& a)
+	{
+		this->inf = a.inf;
+		this->next = a.next;
+		this->_default = a._default;
+	}
+
 	~List()
 	{
 		next = NULL;
@@ -212,7 +219,7 @@ AbstractList<string>* get_init()
 	List<string>* a = new List<string>("Error");
 	return a;
 }
-/*
+
 int main()
 {
 	AbstractList<string>* a = get_init();
@@ -220,4 +227,4 @@ int main()
 	cout << a->get(0) << a->get(1) << a->len();
 	system("pause");
 	return 0;
-}*/
+}

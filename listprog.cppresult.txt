@@ -1,7 +1,7 @@
 In file included from cur.cpp:13:0:
 maria/listprog.cpp: In member function 'void List<T>::insert(int, T)':
-maria/listprog.cpp:147:13: error: there are no arguments to 'empty' that depend on a template parameter, so a declaration of 'empty' must be available [-fpermissive]
+maria/listprog.cpp:154:13: error: there are no arguments to 'empty' that depend on a template parameter, so a declaration of 'empty' must be available [-fpermissive]
    if (empty()){
              ^
-maria/listprog.cpp:147:13: note: (if you use '-fpermissive', G++ will accept your code, but allowing the use of an undeclared name is deprecated)
+maria/listprog.cpp:154:13: note: (if you use '-fpermissive', G++ will accept your code, but allowing the use of an undeclared name is deprecated)
 ./check.sh: line 24: ./a.out: No such file or directory

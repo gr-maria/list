@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 using namespace std;
 
 ostream& operator<<(ostream& o, string& s)
@@ -93,7 +93,7 @@ public:
 		next = NULL;
 	}
 
-	List (const List& a)
+	List(const List& a)
 	{
 		this->inf = a.inf;
 		this->next = a.next;
@@ -128,7 +128,7 @@ public:
 				i++;
 			}
 			tmp->inf = data;
-			
+
 		}
 	}
 
@@ -151,19 +151,16 @@ public:
 	{
 		List* n = new List(data, this->_default);
 		List* tmp1 = this;
-		if (empty()){
-			return;
+
+		int i = 0;
+		while (i != index && tmp1->next != NULL)
+		{
+			tmp1 = tmp1->next;
+			i++;
 		}
-		else{
-			int i = 0;
-			while (i != index && tmp1->next != NULL)
-			{
-				tmp1 = tmp1->next;
-				i++;
-			}
-			tmp1->next = n;
-			n->next = tmp1->next->next;
-		}
+		tmp1->next = n;
+		n->next = tmp1->next->next;
+
 	}
 
 	T remove(int index)
@@ -222,10 +219,10 @@ AbstractList<string>* get_init()
 /*
 int main()
 {
-	AbstractList<string>* a = get_init();
-	a->insert(0, "Data");
-	cout << a->get(0) << a->get(1) << a->len();
-	system("pause");
-	return 0;
+AbstractList<string>* a = get_init();
+a->insert(0, "Data");
+cout << a->get(0) << a->get(1) << a->len();
+system("pause");
+return 0;
 }
 */

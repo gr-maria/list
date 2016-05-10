@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 using namespace std;
 
 ostream& operator<<(ostream& o, string& s)
@@ -75,14 +75,14 @@ public:
 template<typename T>
 class List : public AbstractList < T >
 {
-	T inf;
+	T data;
 	List* next;
 	T _default;
 public:
 
 	List(T data, T def)
 	{
-		inf = data;
+		this->data = data;
 		_default = def;
 		next = NULL;
 	}
@@ -95,7 +95,7 @@ public:
 
 	List(const List& a)
 	{
-		this->inf = a.inf;
+		this->data = a.data;
 		this->next = a.next;
 		this->_default = a._default;
 	}
@@ -103,6 +103,14 @@ public:
 	~List()
 	{
 		next = NULL;
+	}
+
+	List& operator= (List& a)
+	{
+		data = a.data;
+		next = a.next;
+		_default = a._default;
+		return List(*this);
 	}
 
 	int len()
@@ -127,14 +135,14 @@ public:
 				tmp = tmp->next;
 				i++;
 			}
-			tmp->inf = data;
+			tmp->data = data;
 
 		}
 	}
 
 	T get(int index)
 	{
-		if (index > len()){ return _default; }
+		if (index >= len()){ return _default; }
 		else{
 			List* tmp = this;
 			int i = 0;
@@ -143,7 +151,7 @@ public:
 				tmp = tmp->next;
 				i++;
 			}
-			return tmp->inf;
+			return tmp->next->data;
 		}
 	}
 
@@ -158,9 +166,8 @@ public:
 			tmp1 = tmp1->next;
 			i++;
 		}
+		n->next = tmp1->next;
 		tmp1->next = n;
-		n->next = tmp1->next->next;
-
 	}
 
 	T remove(int index)
@@ -168,7 +175,7 @@ public:
 		List* tmp = this;
 		if (tmp->next == NULL)
 		{
-			T d = tmp->inf;
+			T d = tmp->data;
 			tmp = NULL;
 			return d;
 		}
@@ -183,7 +190,7 @@ public:
 			}
 			List* del = tmp;
 			prev->next = tmp->next;
-			return del->inf;
+			return del->data;
 		}
 	}
 
@@ -200,7 +207,7 @@ public:
 		{
 			for (tmp2 = this; tmp2->next != NULL; tmp2 = tmp2->next)
 			{
-				if (comp(&(tmp2->inf), &(tmp2->next->inf)))
+				if (comp(&(tmp2->data), &(tmp2->next->data)))
 				{
 					List* tmp = tmp2;
 					tmp2 = tmp2->next;
@@ -221,7 +228,10 @@ int main()
 {
 AbstractList<string>* a = get_init();
 a->insert(0, "Data");
-cout << a->get(0) << a->get(1) << a->len();
+
+a->push("Hello");
+cout << a->get(0) << '\n' << a->get(1) << '\n'  << a-> get(2) << '\n' << a->len();
+a->print(cout);
 system("pause");
 return 0;
 }

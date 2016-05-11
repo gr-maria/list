@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 using namespace std;
 
 ostream& operator<<(ostream& o, string& s)
@@ -190,7 +190,7 @@ public:
 			}
 			List* del = tmp;
 			prev->next = tmp->next;
-			return del->data;
+			return del->next->data;
 		}
 	}
 
@@ -223,16 +223,14 @@ AbstractList<string>* get_init()
 	List<string>* a = new List<string>("Error");
 	return a;
 }
-/*
+
 int main()
 {
-AbstractList<string>* a = get_init();
-a->insert(0, "Data");
-
-a->push("Hello");
-cout << a->get(0) << '\n' << a->get(1) << '\n'  << a-> get(2) << '\n' << a->len();
-a->print(cout);
-system("pause");
-return 0;
+	AbstractList<string>* a = get_init();
+	a->insert(0, "Data");
+	a->push("Hello");
+	cout << a->get(0) << '\n' << a->get(1) << '\n' << a->get(2) << '\n' << a->len();
+	a->print(cout);
+	system("pause");
+	return 0;
 }
-*/

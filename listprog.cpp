@@ -223,14 +223,15 @@ AbstractList<string>* get_init()
 	List<string>* a = new List<string>("Error");
 	return a;
 }
-
+/*
 int main()
 {
 	AbstractList<string>* a = get_init();
 	a->insert(0, "Data");
 	a->push("Hello");
-	cout << a->get(0) << '\n' << a->get(1) << '\n' << a->get(2) << '\n' << a->len();
+	cout << a->pop();
 	a->print(cout);
 	system("pause");
 	return 0;
 }
+*/

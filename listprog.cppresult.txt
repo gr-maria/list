@@ -1,33 +1,9 @@
-[==========] Running 7 tests from 1 test case.
-[----------] Global test environment set-up.
-[----------] 7 tests from ListTest
-[ RUN      ] ListTest.ListLen
-[       OK ] ListTest.ListLen
-[ RUN      ] ListTest.DeleteOne
-[       OK ] ListTest.DeleteOne
-[ RUN      ] ListTest.AddOne
-[       OK ] ListTest.AddOne
-[ RUN      ] ListTest.AddAndCheckOne
-[       OK ] ListTest.AddAndCheckOne
-[ RUN      ] ListTest.PopOne
-[       OK ] ListTest.PopOne
-[ RUN      ] ListTest.PushPop
-cur.cpp:87: Failure
-Value of: l->pop().c_str()
-  Actual: ""
-Expected: "fail"
-[  FAILED  ] ListTest.PushPop
-[ RUN      ] ListTest.PushPop1E3
-cur.cpp:121: Failure
-Value of: l->pop().c_str()
-  Actual: ""
-Expected: "fail"
-[  FAILED  ] ListTest.PushPop1E3
-[----------] Global test environment tear-down
-[==========] 7 tests from 1 test case ran.
-[  PASSED  ] 5 tests.
-[  FAILED  ] 2 tests, listed below:
-[  FAILED  ] ListTest.PushPop
-[  FAILED  ] ListTest.PushPop1E3
-
- 2 FAILED TESTS
+cur.cpp: In function 'int main(int, char**)':
+cur.cpp:187:31: error: declaration of C function 'int main(int, char**)' conflicts with
+ int main(int argc, char **argv) {
+                               ^
+In file included from cur.cpp:13:0:
+maria/listprog.cpp:227:5: error: previous declaration 'int main()' here
+ int main()
+     ^
+./check.sh: line 24: ./a.out: No such file or directory
